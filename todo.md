@@ -9,3 +9,4 @@
 * [ ] Listing categories
 * [ ] View listins by categories
 * [ ] Home page with random listings
+* [ ] View, won and lost auctions
