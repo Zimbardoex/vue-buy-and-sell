@@ -19,6 +19,8 @@ namespace AuctionApi
 {
     public class Startup
     {
+        readonly string MyAllowAnyOrigin = "_myAllowAnyOrigin";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -29,6 +31,17 @@ namespace AuctionApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowAnyOrigin,
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
 
             // requires using Microsoft.Extensions.Options
             services.Configure<AuctionDatabaseSettings>(
@@ -40,12 +53,15 @@ namespace AuctionApi
 
             services.AddSingleton<ListingService>();
 
+            services.AddCors();
             services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors(MyAllowAnyOrigin);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
