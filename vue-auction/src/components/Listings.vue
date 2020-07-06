@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div>
     <h1>{{ name }}</h1>
     <p>
         {{ description }}
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'Listing',
+  name: 'Listings',
   props: {
     name: String,
     price: String,

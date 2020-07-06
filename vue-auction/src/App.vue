@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <Listing
+    <Listings
       v-for="listing in listings"
       v-bind:key="listing.id"
       v-bind:name="listing.name"
@@ -12,14 +12,14 @@
 </template>
 
 <script>
-import Listing from "./components/Listing.vue";
+import Listings from "./components/Listings.vue";
 
 const API_URL = "http://localhost:5000/api";
 
 export default {
   name: "App",
   components: {
-    Listing,
+    Listings,
   },
   mounted() {
     fetch(`${API_URL}/listings`)
