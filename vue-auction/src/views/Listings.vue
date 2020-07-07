@@ -3,6 +3,7 @@
     <Listing
       v-for="listing in listings"
       v-bind:key="listing.id"
+      v-bind:id="listing.id"
       v-bind:name="listing.name"
       v-bind:description="listing.description"
       v-bind:price="listing.price"

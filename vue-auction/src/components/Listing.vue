@@ -1,5 +1,5 @@
 <template>
-  <div class="listing">
+  <div class="listing" v-on:click="route(id)">
     <img
       alt="Placeholder image"
       src="../assets/placeholder.jpg"
@@ -19,9 +19,17 @@
 export default {
   name: "Listing",
   props: {
+    id: String,
     name: String,
     price: String,
     description: String,
+  },
+  methods: {
+    route: function(listing_id) {
+      const router = this.$router;
+      console.log("listing_id", listing_id);
+      router.push({ path: "listing", query: { id: listing_id } });
+    },
   },
 };
 </script>
@@ -52,7 +60,7 @@ export default {
   align-items: flex-start;
   margin: 0.5rem;
 }
-.listing-price{
+.listing-price {
   margin-right: 0rem;
   width: 100%;
 }
