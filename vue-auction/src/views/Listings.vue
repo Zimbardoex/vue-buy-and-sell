@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="listings">
     <Listing
       v-for="listing in listings"
       v-bind:key="listing.id"
@@ -33,4 +33,11 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+.listings {
+  display: flex;
+  justify-content: center;
+  flex-flow: column wrap;
+  align-items: center;
+}
+</style>
