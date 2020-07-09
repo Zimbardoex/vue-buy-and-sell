@@ -2,6 +2,7 @@
   <div id="app">
     <p>
       <router-link to="/listings">Go to Listings</router-link>
+      <router-link to="/create-listing">Create a listing</router-link>
     </p>
     <!-- component matched by the route will render here -->
     <router-view />
