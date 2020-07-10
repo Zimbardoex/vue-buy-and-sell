@@ -21,6 +21,12 @@
     </select>
     <br />
     <button type="submit">Submit</button>
+    <p v-if="errors">
+      <b>Please correct the following error(s):</b>
+      <ul>
+        <li v-for="errorList in errors" :key="errorList[0]">{{ errorList[0] }}</li>
+      </ul>
+    </p>
   </form>
 </template>
 
@@ -36,10 +42,10 @@ export default {
       price: 0.0,
       category: "",
     },
+    errors: null,
   }),
   methods: {
     createListing() {
-      console.log('"submit"', this.listing);
       fetch(`${API_URL}/listings`, {
         method: "POST",
         headers: {
@@ -49,7 +55,9 @@ export default {
       })
         .then((response) => response.json())
         .then((result) => {
-          console.log("result", result);
+          console.log('result', result)
+          console.log('errors', result.errors)
+          if (result.errors) this.errors = result.errors
         });
     },
   },
