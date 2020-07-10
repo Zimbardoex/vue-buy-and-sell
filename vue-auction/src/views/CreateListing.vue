@@ -55,9 +55,11 @@ export default {
       })
         .then((response) => response.json())
         .then((result) => {
-          console.log('result', result)
-          console.log('errors', result.errors)
-          if (result.errors) this.errors = result.errors
+          if (result.errors){
+            this.errors = result.errors
+          } else {
+             this.$router.push({ path: "listings"});
+          }
         });
     },
   },
