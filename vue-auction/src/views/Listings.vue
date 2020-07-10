@@ -27,7 +27,7 @@ export default {
     fetch(`${API_URL}/listings`)
       .then((response) => response.json())
       .then((result) => {
-        this.listings = result;
+        this.listings = result.reverse();
       });
   },
 };
