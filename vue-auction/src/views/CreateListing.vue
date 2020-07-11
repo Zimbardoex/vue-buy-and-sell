@@ -20,8 +20,8 @@
       </div>
 
       <div class="formElement">
-        <b-field label="Category" v-model="listing.category">
-          <b-select placeholder="Select a category" icon="account">
+        <b-field label="Category">
+          <b-select placeholder="Select a category" icon="account" v-model="listing.category">
             <optgroup label="Computers">
               <option value="laptop">Laptops</option>
               <option value="desktops">Desktops</option>
