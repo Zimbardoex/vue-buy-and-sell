@@ -14,7 +14,7 @@ namespace AuctionApi.Services
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
-            _listings = database.GetCollection<Listing>(settings.AuctionsCollectionName);
+            _listings = database.GetCollection<Listing>(settings.ListingsCollectionName);
         }
 
         public List<Listing> Get() =>
