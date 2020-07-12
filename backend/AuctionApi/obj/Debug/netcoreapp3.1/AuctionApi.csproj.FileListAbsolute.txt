@@ -25,3 +25,5 @@
 /home/liam/projects/vue-auction/backend/AuctionApi/obj/Debug/netcoreapp3.1/staticwebassets/AuctionApi.StaticWebAssets.xml
 /home/liam/projects/vue-auction/backend/AuctionApi/obj/Debug/netcoreapp3.1/AuctionApi.dll
 /home/liam/projects/vue-auction/backend/AuctionApi/obj/Debug/netcoreapp3.1/AuctionApi.pdb
+/home/liam/projects/vue-auction/backend/AuctionApi/bin/Debug/netcoreapp3.1/BCrypt.Net-Next.dll
+/home/liam/projects/vue-auction/backend/AuctionApi/bin/Debug/netcoreapp3.1/DotNetEnv.dll

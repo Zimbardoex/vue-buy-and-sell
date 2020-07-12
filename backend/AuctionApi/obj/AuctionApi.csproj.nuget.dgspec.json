@@ -39,6 +39,14 @@
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[2.10.4, )"
+            },
+            "bcrypt.net-next": {
+              "target": "Package",
+              "version": "[4.0.0, )"
+            },
+            "dotnetenv": {
+              "target": "Package",
+              "version": "[1.4.0, )"
             }
           },
           "imports": [
