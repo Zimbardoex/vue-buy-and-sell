@@ -36,6 +36,12 @@ namespace UsersApi.Controllers
         [HttpPost]
         public ActionResult<User> Create(User user)
         {
+            string saltyString = System.Environment.GetEnvironmentVariable("SALTY_STRING");
+            string password = user.Password + saltyString;
+            string salt = BCrypt.Net.BCrypt.GenerateSalt();
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
+
+            user.Password = hashedPassword;
             _userService.Create(user);
 
             return CreatedAtRoute("GetUser", new { id = user.Id.ToString() }, user);
