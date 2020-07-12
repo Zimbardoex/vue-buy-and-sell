@@ -47,13 +47,24 @@ export default {
         },
         body: JSON.stringify(this.user),
       })
-        .then((response) => response.json())
+        .then((response) =>
+        {
+          if (response.status === 200){
+            return response.json()
+          } else if (response.status === 401) {
+            return { errors: {"Credentials": ["Email or password is incorrect"]}}
+          } else {
+            return { errors: {"Network": ["Network error"]}}
+          }
+        })
         .then((result) => {
           if (result.errors) {
             this.errors = result.errors;
           } else {
             this.$router.push({ path: "listings" });
           }
+        }).catch( error => {
+          this.errors = {"error":[error]}
         });
     },
   },
