@@ -55,6 +55,7 @@ namespace AuctionApi
 
             services.AddCors();
             services.AddControllers();
+            DotNetEnv.Env.Load();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
