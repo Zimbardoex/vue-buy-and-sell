@@ -3,6 +3,7 @@
     <p>
       <router-link to="/listings">Go to Listings</router-link>
       <router-link to="/create-listing">Create a listing</router-link>
+      <router-link to="/signup">Signup</router-link>
     </p>
     <!-- component matched by the route will render here -->
     <router-view />
