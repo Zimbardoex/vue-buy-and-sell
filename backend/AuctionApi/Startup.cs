@@ -50,7 +50,7 @@ namespace AuctionApi
             services.AddSingleton<IAuctionDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<AuctionDatabaseSettings>>().Value);
 
-
+            services.AddSingleton<UserService>();
             services.AddSingleton<ListingService>();
 
             services.AddCors();
