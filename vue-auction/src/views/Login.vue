@@ -61,7 +61,10 @@ export default {
           if (result.errors) {
             this.errors = result.errors;
           } else {
-            this.$router.push({ path: "listings" });
+            if (result.token){
+              localStorage.setItem('token', JSON.stringify(result.token))
+              this.$router.push({ path: "listings" });
+            }
           }
         }).catch( error => {
           this.errors = {"error":[error]}
