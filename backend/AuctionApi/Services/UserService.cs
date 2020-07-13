@@ -3,6 +3,13 @@ using AuctionApi.Models;
 using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Linq;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+
+using System;
+using System.Security.Claims;
+using System.Text;
+
 
 namespace AuctionApi.Services
 {
@@ -38,5 +45,23 @@ namespace AuctionApi.Services
 
         public void Remove(string id) =>
             _users.DeleteOne(user => user.Id == id);
+
+        public string generateJwt(User user)
+        {
+            // generate token that is valid for 1 day
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(System.Environment.GetEnvironmentVariable("TOKEN_KEY"));
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, user.Id.ToString())
+                }),
+                Expires = DateTime.UtcNow.AddDays(1),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+        }
     }
 }
