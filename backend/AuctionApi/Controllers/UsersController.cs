@@ -36,19 +36,26 @@ namespace UsersApi.Controllers
 
     [HttpPost]
     [Route("login")]
-    public ActionResult<User> Login(UserLogin userToAuthenticate)
+    public ActionResult<LoginResponse> Login(UserLogin userToAuthenticate)
     {
       List<User> users = _userService.Get();
-      User user = users.Find( user => user.Email == userToAuthenticate.Email);
+      User user = users.Find(user => user.Email == userToAuthenticate.Email);
 
-      string password = userToAuthenticate.Password;
-      string hashedPassword = user.Password;
-      string saltyString = System.Environment.GetEnvironmentVariable("SALTY_STRING");
-
-      if (BCrypt.Net.BCrypt.Verify(password + saltyString, hashedPassword)) {
-        return Ok(user);
+      if (user != null){
+        string password = userToAuthenticate.Password;
+        string hashedPassword = user.Password;
+        string saltyString = System.Environment.GetEnvironmentVariable("SALTY_STRING");
+        if (BCrypt.Net.BCrypt.Verify(password + saltyString, hashedPassword))
+        {
+          string token = _userService.generateJwt(user);
+          return Ok(new { user, token});
+        }
+        else
+        {
+          return StatusCode(401);
+        }
       } else {
-        return StatusCode(401, "Nope");
+        return StatusCode(401);
       }
     }
 
