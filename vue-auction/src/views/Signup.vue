@@ -64,6 +64,7 @@ export default {
           if (result.errors) {
             this.errors = result.errors;
           } else {
+            localStorage.token = result.token
             this.$router.push({ path: "listings" });
           }
         });
