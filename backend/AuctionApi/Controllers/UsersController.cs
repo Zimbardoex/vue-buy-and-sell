@@ -70,7 +70,9 @@ namespace UsersApi.Controllers
       user.Password = hashedPassword;
       _userService.Create(user);
 
-      return CreatedAtRoute("GetUser", new { id = user.Id.ToString() }, user);
+      string token = _userService.generateJwt(user);
+
+      return CreatedAtRoute("GetUser", new { id = user.Id.ToString()}, new {id = user.Id, email = user.Email, token} );
     }
 
     [HttpPut("{id:length(24)}")]
