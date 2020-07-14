@@ -6,6 +6,9 @@
       <router-link to="/signup">Signup</router-link>
       <router-link to="login">Login</router-link>
     </p>
+    <b-button v-if="token" type="is-primary" outlined @click="logout"
+      >Logout</b-button
+    >
     <!-- component matched by the route will render here -->
     <router-view />
   </div>
@@ -14,6 +17,15 @@
 <script>
 export default {
   name: "App",
+  data: () => ({
+    token: localStorage.token,
+  }),
+  methods: {
+    logout() {
+      localStorage.removeItem('token');
+      this.$router.push("/login");
+    },
+  },
 };
 </script>
 
