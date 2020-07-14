@@ -18,7 +18,6 @@ namespace ListingsApi.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public ActionResult<List<Listing>> Get() =>
             _listingService.Get();
 
@@ -36,6 +35,7 @@ namespace ListingsApi.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult<Listing> Create(Listing listing)
         {
             _listingService.Create(listing);
