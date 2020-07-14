@@ -2,6 +2,7 @@ using AuctionApi.Models;
 using AuctionApi.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ListingsApi.Controllers
 {
@@ -17,6 +18,7 @@ namespace ListingsApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult<List<Listing>> Get() =>
             _listingService.Get();
 
