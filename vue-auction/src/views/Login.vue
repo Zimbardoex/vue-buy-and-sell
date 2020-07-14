@@ -62,7 +62,7 @@ export default {
             this.errors = result.errors;
           } else {
             if (result.token){
-              localStorage.setItem('token', JSON.stringify(result.token))
+              localStorage.setItem('token', result.token)
               this.$router.push({ path: "listings" });
             }
           }
