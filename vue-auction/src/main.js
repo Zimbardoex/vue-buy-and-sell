@@ -26,10 +26,8 @@ const notLoggedInRedirect = (_0, _1, next) => {
 
 const loggedInRedirect = (_0, _1, next) => {
   if (localStorage.token) {
-    console.log('"is token"', "is token");
     next("/");
   } else {
-    console.log('"is not token"', "is not token");
     next();
   }
 };
