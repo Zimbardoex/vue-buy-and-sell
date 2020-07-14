@@ -69,6 +69,7 @@ export default {
       fetch(`${API_URL}/listings`, {
         method: "POST",
         headers: {
+          "Authorization": `Bearer ${localStorage.token}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(this.listing),
