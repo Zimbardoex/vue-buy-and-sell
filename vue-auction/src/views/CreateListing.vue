@@ -41,7 +41,7 @@
       </div>
       <div class="formElement">
         <img v-if="listing.image" :src="listing.image" />
-        <b-upload v-model="images">
+        <b-upload v-model="images" expanded drag-drop>
           <a class="button is-primary">
             <b-icon icon="upload"></b-icon>
             <span>Upload an image</span>
