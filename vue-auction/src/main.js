@@ -9,6 +9,7 @@ import CreateListing from "./views/CreateListing";
 import VueRouter from "vue-router";
 import Buefy from "buefy";
 import "buefy/dist/buefy.css";
+import store from "./store/store";
 
 Vue.use(VueRouter);
 
@@ -62,5 +63,6 @@ const router = new VueRouter({
 
 new Vue({
   router,
+  store,
   render: (h) => h(App),
 }).$mount("#app");
