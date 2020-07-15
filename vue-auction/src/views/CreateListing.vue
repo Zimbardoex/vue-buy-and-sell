@@ -23,7 +23,7 @@
         <b-field label="Category">
           <b-select
             placeholder="Select a category"
-            icon="account"
+            icon="shape"
             v-model="listing.category"
           >
             <optgroup label="Computers">
