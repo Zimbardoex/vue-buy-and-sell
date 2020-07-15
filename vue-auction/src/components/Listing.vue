@@ -2,7 +2,7 @@
   <div class="listing" v-on:click="route(id)">
     <img
       alt="Placeholder image"
-      src="../assets/placeholder.jpg"
+      :src="getImage(image)"
       class="listing-image"
     />
     <div class="listing-text">
@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import DefaultImage from "../assets/placeholder.jpg";
+
 export default {
   name: "Listing",
   props: {
@@ -23,13 +25,16 @@ export default {
     name: String,
     price: String,
     description: String,
+    image: String,
   },
   methods: {
     route: function(listing_id) {
       const router = this.$router;
-      console.log("listing_id", listing_id);
       router.push({ path: "listing", query: { id: listing_id } });
     },
+    getImage: function(image){
+      return image ? image : DefaultImage
+    }
   },
 };
 </script>
