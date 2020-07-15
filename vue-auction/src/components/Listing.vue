@@ -23,7 +23,7 @@ export default {
   props: {
     id: String,
     name: String,
-    price: String,
+    price: Number,
     description: String,
     image: String,
   },
