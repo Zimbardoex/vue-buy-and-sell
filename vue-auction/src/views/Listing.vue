@@ -68,6 +68,7 @@ export default {
 }
 .image {
   width: 80%;
+  margin:  0 auto;
 }
 .purchasing {
   width: 100%;
