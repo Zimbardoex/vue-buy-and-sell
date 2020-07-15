@@ -14,7 +14,7 @@
       </div>
 
       <div class="formElement">
-        <b-field label="Price">
+        <b-field label="Price ($)">
           <b-numberinput step="0.01" v-model="listing.price" />
         </b-field>
       </div>
@@ -49,7 +49,7 @@
         </b-upload>
       </div>
       <div class="formElement">
-        <b-button type="is-primary" native-type="submit">Submit</b-button>
+        <b-button type="is-primary" native-type="submit">Create listing</b-button>
       </div>
       <div class="formElement">
         <p v-if="errors">
