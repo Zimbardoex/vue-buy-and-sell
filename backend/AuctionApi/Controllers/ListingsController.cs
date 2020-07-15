@@ -2,6 +2,7 @@ using AuctionApi.Models;
 using AuctionApi.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ListingsApi.Controllers
 {
@@ -34,6 +35,7 @@ namespace ListingsApi.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult<Listing> Create(Listing listing)
         {
             _listingService.Create(listing);

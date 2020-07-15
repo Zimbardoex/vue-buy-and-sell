@@ -5,7 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="bcrypt.net-next" Version="4.0.0" />
+    <PackageReference Include="dotnetenv" Version="1.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.5" />
     <PackageReference Include="MongoDB.Driver" Version="2.10.4" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
   </ItemGroup>
 
 

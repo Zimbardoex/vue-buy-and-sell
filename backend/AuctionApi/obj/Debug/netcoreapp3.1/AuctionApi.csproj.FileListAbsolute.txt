@@ -25,3 +25,13 @@
 /home/liam/projects/vue-auction/backend/AuctionApi/obj/Debug/netcoreapp3.1/staticwebassets/AuctionApi.StaticWebAssets.xml
 /home/liam/projects/vue-auction/backend/AuctionApi/obj/Debug/netcoreapp3.1/AuctionApi.dll
 /home/liam/projects/vue-auction/backend/AuctionApi/obj/Debug/netcoreapp3.1/AuctionApi.pdb
+/home/liam/projects/vue-auction/backend/AuctionApi/bin/Debug/netcoreapp3.1/BCrypt.Net-Next.dll
+/home/liam/projects/vue-auction/backend/AuctionApi/bin/Debug/netcoreapp3.1/DotNetEnv.dll
+/home/liam/projects/vue-auction/backend/AuctionApi/bin/Debug/netcoreapp3.1/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/liam/projects/vue-auction/backend/AuctionApi/bin/Debug/netcoreapp3.1/Microsoft.IdentityModel.Logging.dll
+/home/liam/projects/vue-auction/backend/AuctionApi/bin/Debug/netcoreapp3.1/Microsoft.IdentityModel.Tokens.dll
+/home/liam/projects/vue-auction/backend/AuctionApi/bin/Debug/netcoreapp3.1/System.IdentityModel.Tokens.Jwt.dll
+/home/liam/projects/vue-auction/backend/AuctionApi/bin/Debug/netcoreapp3.1/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/liam/projects/vue-auction/backend/AuctionApi/bin/Debug/netcoreapp3.1/Microsoft.IdentityModel.Protocols.dll
+/home/liam/projects/vue-auction/backend/AuctionApi/bin/Debug/netcoreapp3.1/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/liam/projects/vue-auction/backend/AuctionApi/bin/Debug/netcoreapp3.1/Newtonsoft.Json.dll

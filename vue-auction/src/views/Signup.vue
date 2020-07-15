@@ -1,42 +1,28 @@
 <template>
   <div class="card">
-    <form @submit.prevent="createListing" @keydown.prevent.enter class="form">
+    <form @submit.prevent="signup" @keydown.prevent.enter class="form">
       <div class="formElement">
-        <b-field label="Title" message="">
-          <b-input v-model="listing.name"></b-input>
-        </b-field>
-      </div>
-
-      <div class="formElement">
-        <b-field label="Description">
-          <b-input type="textarea" v-model="listing.description"></b-input>
-        </b-field>
-      </div>
-
-      <div class="formElement">
-        <b-field label="Price">
-          <b-numberinput step="0.01" v-model="listing.price" />
-        </b-field>
-      </div>
-
-      <div class="formElement">
-        <b-field label="Category">
-          <b-select placeholder="Select a category" icon="account" v-model="listing.category">
-            <optgroup label="Computers">
-              <option value="laptop">Laptops</option>
-              <option value="desktops">Desktops</option>
-            </optgroup>
-
-            <optgroup label="Motors">
-              <option value="cars">Cars</option>
-              <option value="boats">Boats</option>
-              <option value="motorbikes">Motorbikes</option>
-            </optgroup>
-          </b-select>
+        <b-field label="Name">
+          <b-input v-model="user.name"></b-input>
         </b-field>
       </div>
       <div class="formElement">
-        <b-button type="is-primary" native-type="submit">Submit</b-button>
+        <b-field label="Email">
+          <b-input v-model="user.email"></b-input>
+        </b-field>
+      </div>
+      <div class="formElement">
+        <b-field label="Password">
+          <b-input v-model="user.password" type="password"></b-input>
+        </b-field>
+      </div>
+      <div class="formElement">
+        <b-field label="Confirm Password">
+          <b-input v-model="user.confirmPassword" type="password"></b-input>
+        </b-field>
+      </div>
+      <div class="formElement">
+        <b-button type="is-primary" native-type="submit">Signup</b-button>
       </div>
       <div class="formElement">
         <p v-if="errors">
@@ -54,31 +40,31 @@
 const API_URL = "http://localhost:5000/api";
 
 export default {
-  name: "CreateListing",
+  name: "Signup",
   data: () => ({
-    listing: {
+    user: {
       name: "",
-      description: "",
-      price: 0.0,
-      category: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
     },
     errors: null,
   }),
   methods: {
-    createListing() {
-      fetch(`${API_URL}/listings`, {
+    signup() {
+      fetch(`${API_URL}/users`, {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${localStorage.token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(this.listing),
+        body: JSON.stringify(this.user),
       })
         .then((response) => response.json())
         .then((result) => {
           if (result.errors) {
             this.errors = result.errors;
           } else {
+            localStorage.token = result.token
             this.$router.push({ path: "listings" });
           }
         });
@@ -96,7 +82,7 @@ export default {
   padding: 1rem;
 }
 .card {
-  max-width: 35vw;
+  max-width: 25vw;
   min-width: 350px;
   margin: 0 auto;
 }
