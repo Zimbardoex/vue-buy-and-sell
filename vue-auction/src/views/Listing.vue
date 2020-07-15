@@ -5,7 +5,7 @@
     <div class="image-container">
       <img
         alt="Place holder image"
-        src="../assets/placeholder.jpg"
+        :src="checkImage(listing.image)"
         class="image"
       />
     </div>
@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import DefaultImage from "../assets/placeholder.jpg";
+
 const API_URL = "http://localhost:5000/api";
 
 export default {
@@ -36,6 +38,11 @@ export default {
       .then((result) => {
         this.listing = result;
       });
+  },
+  methods: {
+    checkImage: function(image) {
+      return image ? image : DefaultImage;
+    },
   },
 };
 </script>
