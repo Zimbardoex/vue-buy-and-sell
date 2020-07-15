@@ -40,7 +40,8 @@
         </b-field>
       </div>
       <div class="formElement">
-        <b-upload v-model="listing.image">
+        <img v-if="listing.image" :src="listing.image" />
+        <b-upload v-model="images">
           <a class="button is-primary">
             <b-icon icon="upload"></b-icon>
             <span>Upload an image</span>
@@ -75,8 +76,18 @@ export default {
       category: "",
       image: null,
     },
+    images: [],
     errors: null,
   }),
+  watch: {
+    images: function(uploadedFile) {
+      const reader = new FileReader()
+      reader.onload = e => {
+          this.listing.image = e.target.result
+      }
+      reader.readAsDataURL(uploadedFile);
+    },
+  },
   methods: {
     createListing() {
       fetch(`${API_URL}/listings`, {
