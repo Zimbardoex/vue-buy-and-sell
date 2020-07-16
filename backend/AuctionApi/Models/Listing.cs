@@ -26,5 +26,7 @@ namespace AuctionApi.Models
         [Required]
         [StringLength(2048, MinimumLength = 16, ErrorMessage = "Description must be between 16 and 2048 characters in length")]
         public string Description { get; set; }
+
+        public string Image { get; set; }
     }
 }

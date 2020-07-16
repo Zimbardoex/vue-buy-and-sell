@@ -1,10 +1,12 @@
 <template>
   <div class="listing" v-on:click="route(id)">
-    <img
-      alt="Placeholder image"
-      src="../assets/placeholder.jpg"
-      class="listing-image"
-    />
+    <div class="image-container">
+      <img
+        alt="Placeholder image"
+        :src="getImage(image)"
+        class="listing-image"
+      />
+    </div>
     <div class="listing-text">
       <h1>{{ name }}</h1>
       <h2>Caption will go here</h2>
@@ -16,19 +18,24 @@
 </template>
 
 <script>
+import DefaultImage from "../assets/placeholder.jpg";
+
 export default {
   name: "Listing",
   props: {
     id: String,
     name: String,
-    price: String,
+    price: Number,
     description: String,
+    image: String,
   },
   methods: {
     route: function(listing_id) {
       const router = this.$router;
-      console.log("listing_id", listing_id);
       router.push({ path: "listing", query: { id: listing_id } });
+    },
+    getImage: function(image) {
+      return image ? image : DefaultImage;
     },
   },
 };
@@ -37,7 +44,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .listing {
-  margin: 1rem;
+  margin: 0.5rem;
   max-width: 40%;
   min-width: 40%;
   max-height: 5%;
@@ -48,8 +55,22 @@ export default {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .listing-image {
-  max-height: 8rem;
+  max-height: 100%;
+  max-width: 100%;
   width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.image-container {
+  background-color: #eee;
+  position: relative;
+  min-height: 8rem;
+  min-width: 8rem;
   margin: 1rem;
 }
 .listing-text {

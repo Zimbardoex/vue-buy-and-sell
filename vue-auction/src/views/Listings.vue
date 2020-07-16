@@ -7,6 +7,7 @@
       v-bind:name="listing.name"
       v-bind:description="listing.description"
       v-bind:price="listing.price"
+      v-bind:image="listing.image"
     />
   </div>
 </template>

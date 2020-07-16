@@ -14,14 +14,18 @@
       </div>
 
       <div class="formElement">
-        <b-field label="Price">
+        <b-field label="Price ($)">
           <b-numberinput step="0.01" v-model="listing.price" />
         </b-field>
       </div>
 
       <div class="formElement">
         <b-field label="Category">
-          <b-select placeholder="Select a category" icon="account" v-model="listing.category">
+          <b-select
+            placeholder="Select a category"
+            icon="shape"
+            v-model="listing.category"
+          >
             <optgroup label="Computers">
               <option value="laptop">Laptops</option>
               <option value="desktops">Desktops</option>
@@ -36,7 +40,16 @@
         </b-field>
       </div>
       <div class="formElement">
-        <b-button type="is-primary" native-type="submit">Submit</b-button>
+        <img v-if="listing.image" :src="listing.image" />
+        <b-upload v-model="images" expanded drag-drop>
+          <a class="button is-primary">
+            <b-icon icon="upload"></b-icon>
+            <span>Upload an image</span>
+          </a>
+        </b-upload>
+      </div>
+      <div class="formElement">
+        <b-button type="is-primary" native-type="submit">Create listing</b-button>
       </div>
       <div class="formElement">
         <p v-if="errors">
@@ -61,15 +74,26 @@ export default {
       description: "",
       price: 0.0,
       category: "",
+      image: null,
     },
+    images: [],
     errors: null,
   }),
+  watch: {
+    images: function(uploadedFile) {
+      const reader = new FileReader()
+      reader.onload = e => {
+          this.listing.image = e.target.result
+      }
+      reader.readAsDataURL(uploadedFile);
+    },
+  },
   methods: {
     createListing() {
       fetch(`${API_URL}/listings`, {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${localStorage.token}`,
+          Authorization: `Bearer ${localStorage.token}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(this.listing),
