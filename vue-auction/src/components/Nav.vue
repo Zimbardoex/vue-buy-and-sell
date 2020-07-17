@@ -19,7 +19,7 @@
       <b-navbar-item tag="router-link" :to="{ path: '/listings' }">
         All Listings
       </b-navbar-item>
-      <b-navbar-dropdown label="My Stuff">
+      <b-navbar-dropdown v-if="user" label="My Stuff">
         <label><strong>Buying</strong></label>
         <b-navbar-item href="#">
           Watchlist
@@ -45,11 +45,17 @@
 
     <template slot="end">
       <b-navbar-item tag="div">
-        <div class="buttons">
-          <router-link class="button is-primary" tag="a" to="signup"
-            ><strong>Sign up</strong></router-link
-          >
+        <div v-if="!user" class="buttons">
+          <router-link class="button is-primary" tag="a" to="signup">
+            <strong>Sign up</strong>
+          </router-link>
           <router-link to="login">Login</router-link>
+        </div>
+        <div v-if="user" class="buttons">
+          <p class="greeting">{{ `Hi, ${user.name}` }}</p>
+          <a @click="logout" class="button is-primary">
+            <strong>Logout</strong>
+          </a>
         </div>
       </b-navbar-item>
     </template>
@@ -57,8 +63,20 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "Nav",
+  computed: mapState({
+    user: (state) => state.user,
+  }),
+  methods: {
+    logout() {
+      localStorage.removeItem("token");
+      this.$store.commit("removeUser");
+      this.$router.push("/login");
+    },
+  },
 };
 </script>
 
@@ -66,5 +84,8 @@ export default {
 .logo {
   min-width: 5rem;
   min-height: 5rem;
+}
+.greeting {
+  margin-right: 1rem;
 }
 </style>

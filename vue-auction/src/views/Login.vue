@@ -63,6 +63,7 @@ export default {
           } else {
             if (result.token){
               localStorage.setItem('token', result.token)
+              this.$store.commit("setUser", result.user)
               this.$router.push({ path: "listings" });
             }
           }

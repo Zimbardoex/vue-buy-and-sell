@@ -13,11 +13,5 @@ export default {
   data: () => ({
     token: localStorage.token,
   }),
-  methods: {
-    logout() {
-      localStorage.removeItem("token");
-      this.$router.push("/login");
-    },
-  },
 };
 </script>
