@@ -123,6 +123,7 @@ export default {
   max-width: 35vw;
   min-width: 350px;
   margin: 0 auto;
+  margin-top: 1rem;
 }
 .formElement {
   display: flex;
