@@ -4,7 +4,7 @@
       <b-navbar-item tag="router-link" :to="{ path: '/' }">
         <img
           src="../assets/newLogo.png"
-          alt="Site logo showing Vue, Buy Sell"
+          alt="Site logo showing Vue, Buy & Sell"
           class="logo"
         />
       </b-navbar-item>
