@@ -48,6 +48,7 @@ namespace UsersApi.Controllers
         if (BCrypt.Net.BCrypt.Verify(password + saltyString, hashedPassword))
         {
           string token = _userService.generateJwt(user);
+          user.Password = null;
           return Ok(new { user, token });
         }
         else
@@ -71,8 +72,8 @@ namespace UsersApi.Controllers
         _userService.Create(user);
 
         string token = _userService.generateJwt(user);
-
-        return CreatedAtRoute("GetUser", new { id = user.Id.ToString() }, new { id = user.Id, email = user.Email, token });
+        user.Password = null;
+        return CreatedAtRoute("GetUser", new {id = user.Id }, new { user, token });
       }
       return StatusCode(409, "User with this email already exists");
     }
