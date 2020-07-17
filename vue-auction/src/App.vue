@@ -1,20 +1,19 @@
 <template>
   <div id="app">
-    <p>
-      <router-link to="/">Home</router-link>
-      <router-link to="/listings">Go to Listings</router-link>
-      <router-link to="/create-listing">Create a listing</router-link>
-      <router-link to="/signup">Signup</router-link>
-      <router-link to="login">Login</router-link>
-    </p>
+    <Nav />
     <!-- component matched by the route will render here -->
     <router-view />
   </div>
 </template>
 
 <script>
+import Nav from './components/Nav';
+
 export default {
   name: "App",
+  components: {
+    Nav,
+  },
 };
 </script>
 
