@@ -1,5 +1,5 @@
 <template>
-  <div class="listing" v-on:click="route(id)">
+  <div class="listing card" v-on:click="route(id)">
     <div class="image-container">
       <img
         alt="Placeholder image"
@@ -45,14 +45,13 @@ export default {
 <style scoped>
 .listing {
   margin: 0.5rem;
-  max-width: 40%;
-  min-width: 40%;
+  max-width: 35%;
+  min-width: 35%;
   max-height: 5%;
   display: flex;
   justify-content: flex-start;
   flex-flow: row nowrap;
   align-items: center;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .listing-image {
   max-height: 100%;

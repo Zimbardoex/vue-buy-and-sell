@@ -64,8 +64,11 @@ export default {
           if (result.errors) {
             this.errors = result.errors;
           } else {
-            localStorage.token = result.token
-            this.$router.push({ path: "listings" });
+            if (result.token) {
+              localStorage.setItem("token", result.token);
+              this.$store.commit("setUser", result.user);
+              this.$router.push({ path: "listings" });
+            }
           }
         });
     },
