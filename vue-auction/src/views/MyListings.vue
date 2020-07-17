@@ -14,6 +14,7 @@
 
 <script>
 const API_URL = "http://localhost:5000/api";
+import { mapState } from "vuex";
 import Listing from "../components/Listing";
 
 export default {
@@ -23,7 +24,9 @@ export default {
   },
   data: () => ({
     listings: [],
-    user: this.$store.state.user,
+  }),
+  computed: mapState({
+    user: (state) => state.user,
   }),
   mounted() {
     fetch(`${API_URL}/listings/${this.user.id}`)
