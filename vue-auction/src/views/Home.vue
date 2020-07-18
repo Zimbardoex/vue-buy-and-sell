@@ -1,5 +1,15 @@
 <template>
   <div>
+    <section class="search">
+      <b-field position="is-centered">
+        <b-input placeholder="Search listings..." type="search" icon="magnify" class="search-bar">
+        </b-input>
+        <p class="control">
+          <button class="button is-primary">Search</button>
+        </p>
+      </b-field>
+    </section>
+    <hr />
     <div class="panel is-primary">
       <p class="panel-heading">
         Categories
@@ -50,5 +60,13 @@ export default {
 }
 .category {
   text-align: left;
+}
+.search {
+  margin: 0  auto;
+  margin-top: 1rem;
+  width: 60%;
+}
+.search-bar{
+  width: 100%;
 }
 </style>
