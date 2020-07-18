@@ -31,12 +31,20 @@
         </div>
       </div>
     </div>
+    <hr />
+  <div class="carousel-container">
+    <h1 class="subtitle">Check out these listings!</h1>
+    <ListingsCarousel />
+  </div>
   </div>
 </template>
 
 <script>
+import ListingsCarousel from '../components/ListingsCarousel';
+
 export default {
   name: "Home",
+  components:{ListingsCarousel},
   data: () => ({
     categories: [
       "books",
@@ -83,5 +91,10 @@ export default {
 }
 .search-bar {
   width: 100%;
+}
+.carousel-container {
+  width: 60vw;
+  margin: 0 auto;
+  margin-top: 2rem;
 }
 </style>
