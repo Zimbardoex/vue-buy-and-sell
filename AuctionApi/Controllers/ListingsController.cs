@@ -24,6 +24,11 @@ namespace ListingsApi.Controllers
     public ActionResult<List<Listing>> Get() =>
         _listingService.Get();
 
+    [HttpGet]
+    [Route("random")]
+    public ActionResult<List<Listing>> Get(int number) =>
+        _listingService.GetRandom(number);
+
     [HttpGet("{id:length(24)}", Name = "GetListing")]
     public ActionResult<Listing> Get(string id)
     {
