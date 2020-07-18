@@ -56,7 +56,7 @@ namespace AuctionApi.Services
       {
         Subject = new ClaimsIdentity(new Claim[]
           {
-                    new Claim(ClaimTypes.Name, user.Id.ToString())
+            new Claim("Id", user.Id.ToString())
           }),
         Expires = DateTime.UtcNow.AddDays(1),
         SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),

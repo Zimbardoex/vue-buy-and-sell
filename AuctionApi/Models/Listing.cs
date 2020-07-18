@@ -10,6 +10,9 @@ namespace AuctionApi.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
 
+        [Required]
+        public string UserId { get; set; }
+
         [BsonElement("Name")]
         [Required]
         [StringLength(64, MinimumLength = 3, ErrorMessage = "Name must be between 3 and 64 characters in length")]

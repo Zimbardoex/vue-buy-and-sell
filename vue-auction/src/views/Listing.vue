@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container card">
     <h1>{{ listing.name }}</h1>
     <h3>Listing caption will be here</h3>
     <div class="image-container">
@@ -50,9 +50,9 @@ export default {
 <style scoped>
 .container {
   margin: 0 auto;
+  margin-top: 1rem;
   max-width: 50%;
   padding: 4rem;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: flex;
   flex-direction: column;
   align-items: flex-start;

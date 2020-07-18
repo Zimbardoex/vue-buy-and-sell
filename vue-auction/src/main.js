@@ -3,6 +3,7 @@ import App from "./App.vue";
 import '@mdi/font/css/materialdesignicons.css'
 import Home from "./views/Home";
 import Listings from "./views/Listings";
+import MyListings from "./views/MyListings";
 import Listing from "./views/Listing";
 import Signup from "./views/Signup";
 import Login from "./views/Login";
@@ -38,6 +39,7 @@ const routes = [
   { path: "/", component: Home },
   { path: "/listings", component: Listings },
   { path: "/listing", component: Listing, name: "listing" },
+  { path: "/my-listings", component: MyListings, name: "myListing" },
   {
     path: "/create-listing",
     component: CreateListing,

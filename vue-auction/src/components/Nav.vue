@@ -31,7 +31,7 @@
           Lost
         </b-navbar-item>
         <label><strong>Selling</strong></label>
-        <b-navbar-item href="#">
+        <b-navbar-item tag="router-link" :to="{ path: '/my-listings' }">
           My Listings
         </b-navbar-item>
         <b-navbar-item href="#">

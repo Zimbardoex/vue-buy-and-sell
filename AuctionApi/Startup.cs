@@ -86,14 +86,12 @@ namespace AuctionApi
     {
       app.UseCors(MyAllowAnyOrigin);
 
-
       if (env.IsDevelopment())
       {
         app.UseDeveloperExceptionPage();
       }
 
       app.UseRouting();
-
       app.UseAuthentication();
       app.UseAuthorization();
 

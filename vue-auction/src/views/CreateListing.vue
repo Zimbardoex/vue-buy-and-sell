@@ -65,6 +65,7 @@
 
 <script>
 const API_URL = "http://localhost:5000/api";
+import { mapState } from "vuex";
 
 export default {
   name: "CreateListing",
@@ -78,6 +79,9 @@ export default {
     },
     images: [],
     errors: null,
+  }),
+  computed: mapState({
+    user: (state) => state.user,
   }),
   watch: {
     images: function(uploadedFile) {
@@ -96,7 +100,7 @@ export default {
           Authorization: `Bearer ${localStorage.token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(this.listing),
+        body: JSON.stringify({...this.listing, UserId: this.user.id}),
       })
         .then((response) => response.json())
         .then((result) => {
