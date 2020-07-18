@@ -23,6 +23,9 @@ namespace AuctionApi.Services
         public Listing Get(string id) =>
             _listings.Find<Listing>(listing => listing.Id == id).FirstOrDefault();
 
+        public List<Listing> GetListingsFor(string userId) =>
+            _listings.Find<Listing>(listing => listing.UserId == userId).ToList();
+
         public Listing Create(Listing listing)
         {
             _listings.InsertOne(listing);
