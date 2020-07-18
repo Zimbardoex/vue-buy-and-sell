@@ -80,7 +80,8 @@ export default {
 .panel {
   max-width: 35vw;
   margin: 0 auto;
-  margin-top: 1rem;
+  margin-top: 2rem;
+  padding-bottom: 1rem;
 }
 .panel-heading {
   background-color: #714dd2;
