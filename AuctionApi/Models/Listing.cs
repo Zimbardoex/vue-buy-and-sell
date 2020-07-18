@@ -11,7 +11,7 @@ namespace AuctionApi.Models
         public string Id { get; set; }
 
         [Required]
-        public string UserID { get; set; }
+        public string UserId { get; set; }
 
         [BsonElement("Name")]
         [Required]
