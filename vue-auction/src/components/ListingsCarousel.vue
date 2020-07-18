@@ -6,12 +6,13 @@
       :arrow-hover="arrowHover"
       :items-to-list="perList"
       :has-drag="drag"
+      v-if="listings"
     >
       <template slot="item" slot-scope="props">
         <div class="card">
           <div class="card-image">
             <figure class="image is-5by4">
-              <a @click="info(props.index)"
+              <a @click="info(props.list.id)"
                 ><img :src="getImage(props.list.image)"
               /></a>
             </figure>
@@ -34,7 +35,6 @@
 </template>
 
 <script>
-const API_URL = "http://localhost:5000/api";
 import DefaultImage from "../assets/placeholder.jpg";
 
 export default {
@@ -43,21 +43,19 @@ export default {
     return {
       arrowHover: false,
       drag: true,
-      values: 1,
-      perList: 1,
-      listings: [],
+      values: 0,
     };
   },
-  mounted() {
-    fetch(`${API_URL}/listings/random/?number=7`)
-      .then((response) => response.json())
-      .then((result) => {
-        this.listings = result;
-      });
+  props:{
+    listings: [],
   },
   methods: {
     getImage: function(image) {
       return image ? image : DefaultImage;
+    },
+    info: function(listing_id) {
+      const router = this.$router;
+      router.push({ path: "listing", query: { id: listing_id } });
     },
   },
 };

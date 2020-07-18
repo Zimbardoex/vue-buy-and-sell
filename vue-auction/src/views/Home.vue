@@ -34,13 +34,16 @@
     <hr />
   <div class="carousel-container">
     <h1 class="subtitle">Check out these listings!</h1>
-    <ListingsCarousel />
+    <ListingsCarousel :listings="randomListings"/>
   </div>
   </div>
 </template>
 
 <script>
 import ListingsCarousel from '../components/ListingsCarousel';
+import { mapState } from "vuex";
+
+const API_URL = "http://localhost:5000/api";
 
 export default {
   name: "Home",
@@ -58,6 +61,18 @@ export default {
       "sports",
     ],
   }),
+  computed: mapState({
+    randomListings: (state) => state.randomListings,
+  }),
+  mounted() {
+    if (!this.$store.state.randomListings){
+      fetch(`${API_URL}/listings/random/?number=7`)
+        .then((response) => response.json())
+        .then((result) => {
+          this.$store.commit("setRandomListings", result);
+        });
+    }
+  },
 };
 </script>
 
