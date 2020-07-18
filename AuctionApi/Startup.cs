@@ -43,6 +43,7 @@ namespace AuctionApi
 
       services.AddSingleton<UserService>();
       services.AddSingleton<ListingService>();
+      services.AddSingleton<CategoryService>();
 
       services.AddControllers();
       DotNetEnv.Env.Load();
