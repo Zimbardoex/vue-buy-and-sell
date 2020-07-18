@@ -11,7 +11,9 @@
         <div class="card">
           <div class="card-image">
             <figure class="image is-5by4">
-              <a @click="info(props.index)"><img :src="getImage(props.list.image)"/></a>
+              <a @click="info(props.index)"
+                ><img :src="getImage(props.list.image)"
+              /></a>
             </figure>
             <b-tag type="is-info" rounded style="position: absolute; top: 0;">
               <p class="control" style="margin-left: auto">
@@ -21,7 +23,7 @@
           </div>
           <div class="card-content">
             <div class="content">
-              <p class="title is-6">{{ props.list.name }}</p>
+              <p class="title is-6 listing-title">{{ props.list.name }}</p>
               <p class="subtitle is-7">Caption will go here</p>
             </div>
           </div>
@@ -60,3 +62,11 @@ export default {
   },
 };
 </script>
+
+<style>
+.listing-title {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+</style>
