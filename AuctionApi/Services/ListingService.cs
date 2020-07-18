@@ -1,7 +1,7 @@
 using AuctionApi.Models;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace AuctionApi.Services
 {
@@ -19,6 +19,9 @@ namespace AuctionApi.Services
 
         public List<Listing> Get() =>
             _listings.Find(listing => true).ToList();
+
+        public List<Listing> GetRandom(int number) =>
+            _listings.AsQueryable().Sample(number).ToList();
 
         public Listing Get(string id) =>
             _listings.Find<Listing>(listing => listing.Id == id).FirstOrDefault();
