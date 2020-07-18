@@ -29,7 +29,14 @@ export default {
     user: (state) => state.user,
   }),
   mounted() {
-    fetch(`${API_URL}/listings/${this.user.id}`)
+    fetch(`${API_URL}/listings/my-listings`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ value: localStorage.token }),
+    })
       .then((response) => response.json())
       .then((result) => {
         this.listings = result.reverse();
