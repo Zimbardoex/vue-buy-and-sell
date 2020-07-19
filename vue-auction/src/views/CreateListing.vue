@@ -26,16 +26,13 @@
             icon="shape"
             v-model="listing.category"
           >
-            <optgroup label="Computers">
-              <option value="laptop">Laptops</option>
-              <option value="desktops">Desktops</option>
-            </optgroup>
-
-            <optgroup label="Motors">
-              <option value="cars">Cars</option>
-              <option value="boats">Boats</option>
-              <option value="motorbikes">Motorbikes</option>
-            </optgroup>
+            <option
+              v-for="category in categories"
+              :value="category"
+              :key="category"
+            >
+              {{ category.replace(/(^\w|\s\w)/g, (fc) => fc.toUpperCase()) }}
+            </option>
           </b-select>
         </b-field>
       </div>
@@ -49,7 +46,9 @@
         </b-upload>
       </div>
       <div class="formElement">
-        <b-button type="is-primary" native-type="submit">Create listing</b-button>
+        <b-button type="is-primary" native-type="submit">
+          Create listing
+        </b-button>
       </div>
       <div class="formElement">
         <p v-if="errors">
@@ -79,16 +78,24 @@ export default {
     },
     images: [],
     errors: null,
+    categories: [],
   }),
   computed: mapState({
     user: (state) => state.user,
   }),
+  mounted() {
+    fetch(`${API_URL}/categories`)
+      .then((response) => response.json())
+      .then((result) => {
+        this.categories = result.map((category) => category.name);
+      });
+  },
   watch: {
     images: function(uploadedFile) {
-      const reader = new FileReader()
-      reader.onload = e => {
-          this.listing.image = e.target.result
-      }
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.listing.image = e.target.result;
+      };
       reader.readAsDataURL(uploadedFile);
     },
   },
@@ -100,7 +107,7 @@ export default {
           Authorization: `Bearer ${localStorage.token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({...this.listing, UserId: this.user.id}),
+        body: JSON.stringify({ ...this.listing, UserId: this.user.id }),
       })
         .then((response) => response.json())
         .then((result) => {
