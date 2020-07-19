@@ -1,9 +1,9 @@
 <template>
   <div class="listings">
     <h1 class="title">
-      {{
-        $route.params.category.replace(/(^\w|\s\w)/g, (fc) => fc.toUpperCase())
-      }}
+      Search results for "{{ this.$route.query.query }}" - ({{
+        this.listings.length
+      }})
     </h1>
     <Listing
       v-for="listing in listings"
@@ -22,7 +22,7 @@ const API_URL = "http://localhost:5000/api";
 import Listing from "../components/Listing";
 
 export default {
-  name: "Listings",
+  name: "ListingsSearch",
   components: {
     Listing,
   },
@@ -30,7 +30,7 @@ export default {
     listings: [],
   }),
   mounted() {
-    fetch(`${API_URL}/listings/${this.$route.params.category}`)
+    fetch(`${API_URL}/listings/search?query=${this.$route.query.query}`)
       .then((response) => response.json())
       .then((result) => {
         this.listings = result.reverse();
@@ -48,6 +48,6 @@ export default {
   align-items: center;
 }
 .title {
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 </style>

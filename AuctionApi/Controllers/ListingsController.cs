@@ -42,6 +42,20 @@ namespace ListingsApi.Controllers
       return listing;
     }
 
+    [HttpGet(Name="GetListingsSearch")]
+    [Route("search")]
+    public ActionResult<List<Listing>> GetListingsSearch(string query)
+    {
+      var listings = _listingService.SearchListings(query);
+
+      if (listings == null)
+      {
+        return NotFound();
+      }
+
+      return listings;
+    }
+
     [HttpGet("{category}", Name = "GetListingsByCategory")]
     public ActionResult<List<Listing>> GetListingsByCategory(string category)
     {

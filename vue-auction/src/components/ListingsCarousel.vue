@@ -47,7 +47,7 @@ export default {
     };
   },
   props:{
-    listings: [],
+    listings: Array,
   },
   methods: {
     getImage: function(image) {

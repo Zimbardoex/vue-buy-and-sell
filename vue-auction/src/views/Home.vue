@@ -7,10 +7,11 @@
           type="search"
           icon="magnify"
           class="search-bar"
-        >
-        </b-input>
+          v-model="query"
+          v-on:keyup.enter.native="search"
+        />
         <p class="control">
-          <button class="button is-primary">Search</button>
+          <button class="button is-primary" @click="search">Search</button>
         </p>
       </b-field>
     </section>
@@ -49,11 +50,17 @@ export default {
   name: "Home",
   components:{ListingsCarousel},
   data: () => ({
-    categories: []
+    categories: [],
+    query:""
   }),
   computed: mapState({
     randomListings: (state) => state.randomListings,
   }),
+  methods: {
+    search: function (){
+      this.$router.push({ path: "listings/search", query:{ query: this.query} });
+    }
+  },
   mounted() {
     if (!this.$store.state.randomListings){
       fetch(`${API_URL}/listings/random/?number=7`)

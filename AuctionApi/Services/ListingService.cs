@@ -25,6 +25,9 @@ namespace AuctionApi.Services
     public List<Listing> GetListingsByCategory(string category) =>
         _listings.Find(listing => listing.Category.ToLower() == category.ToLower()).ToList();
 
+    public List<Listing> SearchListings(string query) =>
+        _listings.Find(listing => listing.Name.ToLower().Contains(query.ToLower())).ToList();
+
     public Listing Get(string id) =>
         _listings.Find<Listing>(listing => listing.Id == id).FirstOrDefault();
 
