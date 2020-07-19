@@ -1,9 +1,9 @@
 <template>
   <div class="listings">
     <h1 class="title">
-      {{
-        this.$route.query.query.replace(/(^\w|\s\w)/g, (fc) => fc.toUpperCase())
-      }}
+      Search results for "{{ this.$route.query.query }}" - ({{
+        this.listings.length
+      }})
     </h1>
     <Listing
       v-for="listing in listings"
@@ -46,5 +46,8 @@ export default {
   justify-content: center;
   flex-flow: column wrap;
   align-items: center;
+}
+.title {
+  margin-top: 2rem;
 }
 </style>
