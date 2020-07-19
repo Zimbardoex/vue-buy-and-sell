@@ -1,8 +1,9 @@
 import Vue from "vue";
 import App from "./App.vue";
-import '@mdi/font/css/materialdesignicons.css'
+import "@mdi/font/css/materialdesignicons.css";
 import Home from "./views/Home";
 import Listings from "./views/Listings";
+import ListingsCategory from "./views/ListingsCategory";
 import MyListings from "./views/MyListings";
 import Listing from "./views/Listing";
 import Signup from "./views/Signup";
@@ -37,6 +38,7 @@ const loggedInRedirect = (_0, _1, next) => {
 
 const routes = [
   { path: "/", component: Home },
+  { path: "/listings/:category", component: ListingsCategory },
   { path: "/listings", component: Listings },
   { path: "/listing", component: Listing, name: "listing" },
   { path: "/my-listings", component: MyListings, name: "myListing" },
@@ -67,6 +69,8 @@ const router = new VueRouter({
 new Vue({
   router,
   store,
-  beforeCreate() { this.$store.commit('initialiseStore');},
+  beforeCreate() {
+    this.$store.commit("initialiseStore");
+  },
   render: (h) => h(App),
 }).$mount("#app");

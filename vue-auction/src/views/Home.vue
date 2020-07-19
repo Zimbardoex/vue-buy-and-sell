@@ -49,17 +49,7 @@ export default {
   name: "Home",
   components:{ListingsCarousel},
   data: () => ({
-    categories: [
-      "books",
-      "clothing",
-      "computers",
-      "gaming",
-      "mobile phones",
-      "motors",
-      "instruments",
-      "pets",
-      "sports",
-    ],
+    categories: []
   }),
   computed: mapState({
     randomListings: (state) => state.randomListings,
@@ -72,6 +62,11 @@ export default {
           this.$store.commit("setRandomListings", result);
         });
     }
+    fetch(`${API_URL}/categories`)
+        .then((response) => response.json())
+        .then((result) => {
+          this.categories = result.map(category => category.name);
+        });
   },
 };
 </script>

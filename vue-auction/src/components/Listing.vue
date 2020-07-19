@@ -70,10 +70,14 @@ export default {
   position: relative;
   min-height: 8rem;
   min-width: 8rem;
+  max-width: 8rem;
   margin: 1rem;
 }
 .listing-text {
+  width: 50%;
   white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
   display: flex;
   justify-content: space-around;
   flex-flow: column nowrap;
@@ -81,7 +85,7 @@ export default {
   margin: 0.5rem;
 }
 .listing-price {
-  margin-right: 0rem;
-  width: 100%;
+  text-align: center;
+  width: 20%;
 }
 </style>
