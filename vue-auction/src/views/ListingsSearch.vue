@@ -30,7 +30,7 @@ export default {
     listings: [],
   }),
   mounted() {
-    fetch(`${API_URL}/listings/search/${this.$route.query.query}`)
+    fetch(`${API_URL}/listings/search?query=${this.$route.query.query}`)
       .then((response) => response.json())
       .then((result) => {
         this.listings = result.reverse();
