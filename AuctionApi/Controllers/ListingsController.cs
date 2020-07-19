@@ -48,10 +48,10 @@ namespace ListingsApi.Controllers
     {
       var listings = _listingService.SearchListings(query);
 
-      // if (listings== null)
-      // {
-      //   return NotFound();
-      // }
+      if (listings == null)
+      {
+        return NotFound();
+      }
 
       return listings;
     }
