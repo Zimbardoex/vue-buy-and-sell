@@ -42,6 +42,19 @@ namespace ListingsApi.Controllers
       return listing;
     }
 
+    [HttpGet("{category}", Name = "GetListingsByCategory")]
+    public ActionResult<List<Listing>> GetListingsByCategory(string category)
+    {
+      var listings = _listingService.GetListingsByCategory(category);
+
+      if (listings== null)
+      {
+        return NotFound();
+      }
+
+      return listings;
+    }
+
     public string getTokenPayload(string token)
     {
       string userId = null;
