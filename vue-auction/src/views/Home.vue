@@ -8,8 +8,8 @@
           icon="magnify"
           class="search-bar"
           v-model="query"
-        >
-        </b-input>
+          v-on:keyup.enter.native="search"
+        />
         <p class="control">
           <button class="button is-primary" @click="search">Search</button>
         </p>
