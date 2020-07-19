@@ -4,6 +4,7 @@ import "@mdi/font/css/materialdesignicons.css";
 import Home from "./views/Home";
 import Listings from "./views/Listings";
 import ListingsCategory from "./views/ListingsCategory";
+import ListingsSearch from "./views/ListingsSearch";
 import MyListings from "./views/MyListings";
 import Listing from "./views/Listing";
 import Signup from "./views/Signup";
@@ -38,6 +39,7 @@ const loggedInRedirect = (_0, _1, next) => {
 
 const routes = [
   { path: "/", component: Home },
+  { path: "/listings/search", component: ListingsSearch },
   { path: "/listings/:category", component: ListingsCategory },
   { path: "/listings", component: Listings },
   { path: "/listing", component: Listing, name: "listing" },
