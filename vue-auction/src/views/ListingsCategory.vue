@@ -47,4 +47,7 @@ export default {
   flex-flow: column wrap;
   align-items: center;
 }
+.title {
+  margin-top: 1rem;
+}
 </style>
