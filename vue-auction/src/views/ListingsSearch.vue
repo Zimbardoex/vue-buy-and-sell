@@ -30,6 +30,7 @@ export default {
     listings: [],
   }),
   mounted() {
+    document.title = this.$route.query.query
     fetch(`${API_URL}/listings/search?query=${this.$route.query.query}`)
       .then((response) => response.json())
       .then((result) => {
