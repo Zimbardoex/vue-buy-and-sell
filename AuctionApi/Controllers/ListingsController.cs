@@ -42,7 +42,7 @@ namespace ListingsApi.Controllers
       return listing;
     }
 
-    [HttpGet(Name="GetListingsSearch")]
+    [HttpGet("search/{search}", Name="GetListingsSearch")]
     [Route("search")]
     public ActionResult<List<Listing>> GetListingsSearch(string query)
     {

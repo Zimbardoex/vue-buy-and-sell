@@ -37,6 +37,7 @@ export default {
       .then((response) => response.json())
       .then((result) => {
         this.listing = result;
+        document.title = this.listing.name;
       });
   },
   methods: {

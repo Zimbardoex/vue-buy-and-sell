@@ -29,6 +29,9 @@ export default {
   data: () => ({
     listings: [],
   }),
+  beforeCreate() {
+    document.title = this.$route.params.category.replace(/(^\w|\s\w)/g, (fc) => fc.toUpperCase());
+  },
   mounted() {
     fetch(`${API_URL}/listings/${this.$route.params.category}`)
       .then((response) => response.json())
