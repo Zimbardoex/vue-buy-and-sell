@@ -26,7 +26,7 @@ export default {
   methods: {
     search: function() {
       this.$router.push({
-        path: "listings/search",
+        path: "/listings/search",
         query: { query: this.query },
       });
     },
