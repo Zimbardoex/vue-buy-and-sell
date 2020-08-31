@@ -32,7 +32,7 @@ export default {
   methods: {
     route: function(listing_id) {
       const router = this.$router;
-      router.push({ path: "listing", query: { id: listing_id } });
+      router.push({ path: "/listing", query: { id: listing_id } });
     },
     getImage: function(image) {
       return image ? image : DefaultImage;
