@@ -42,7 +42,7 @@ namespace ListingsApi.Controllers
       return listing;
     }
 
-    [HttpGet("search/{search}", Name="GetListingsSearch")]
+    [HttpGet("search/{search}", Name = "GetListingsSearch")]
     [Route("search")]
     public ActionResult<List<Listing>> GetListingsSearch(string query)
     {
@@ -61,7 +61,7 @@ namespace ListingsApi.Controllers
     {
       var listings = _listingService.GetListingsByCategory(category);
 
-      if (listings== null)
+      if (listings == null)
       {
         return NotFound();
       }
@@ -73,10 +73,12 @@ namespace ListingsApi.Controllers
     {
       string userId = null;
       var newtoken = new JwtSecurityToken(jwtEncodedString: token);
-      foreach(Claim claim in newtoken.Claims){
-          if (claim.Type == "Id"){
-              userId = claim.Value;
-          }
+      foreach (Claim claim in newtoken.Claims)
+      {
+        if (claim.Type == "Id")
+        {
+          userId = claim.Value;
+        }
       }
       return userId;
     }
