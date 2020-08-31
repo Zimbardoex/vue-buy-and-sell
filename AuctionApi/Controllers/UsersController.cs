@@ -40,29 +40,30 @@ namespace UsersApi.Controllers
     {
       User user = _userService.getUserWithEmail(userToAuthenticate.Email);
 
-      if (user != null)
+      if (user == null)
       {
-        string password = userToAuthenticate.Password;
-        string hashedPassword = user.Password;
-        string saltyString = System.Environment.GetEnvironmentVariable("SALTY_STRING");
-        if (BCrypt.Net.BCrypt.Verify(password + saltyString, hashedPassword))
-        {
-          string token = _userService.generateJwt(user);
-          user.Password = null;
-          return Ok(new { user, token });
-        }
-        else
-        {
-          return StatusCode(401);
-        }
+        return NotFound();
       }
+
+      string password = userToAuthenticate.Password;
+      string hashedPassword = user.Password;
+      string saltyString = System.Environment.GetEnvironmentVariable("SALTY_STRING");
+
+      if (BCrypt.Net.BCrypt.Verify(password + saltyString, hashedPassword))
+      {
+        string token = _userService.generateJwt(user);
+        user.Password = null;
+        return Ok(new { user, token });
+      }
+
       return StatusCode(401);
     }
 
     [HttpPost]
     public ActionResult<User> Create(User user)
     {
-      if(_userService.getUserWithEmail(user.Email) == null){
+      if (_userService.getUserWithEmail(user.Email) == null)
+      {
         string saltyString = System.Environment.GetEnvironmentVariable("SALTY_STRING");
         string password = user.Password + saltyString;
         string salt = BCrypt.Net.BCrypt.GenerateSalt();
@@ -73,9 +74,9 @@ namespace UsersApi.Controllers
 
         string token = _userService.generateJwt(user);
         user.Password = null;
-        return CreatedAtRoute("GetUser", new {id = user.Id }, new { user, token });
+        return CreatedAtRoute("GetUser", new { id = user.Id }, new { user, token });
       }
-      return StatusCode(409, "User with this email already exists");
+      return StatusCode(409, "A user with this email already exists");
     }
 
     [HttpPut("{id:length(24)}")]

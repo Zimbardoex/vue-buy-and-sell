@@ -37,7 +37,7 @@ namespace CategoriesApi.Controllers
     public ActionResult<Category> Create(Category category)
     {
       _categoryService.Create(category);
-      return CreatedAtRoute("GetCategory", new {id = category.Id }, new { category });
+      return CreatedAtRoute("GetCategory", new { id = category.Id }, new { category });
     }
 
     [HttpPut("{id:length(24)}")]
