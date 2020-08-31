@@ -11,10 +11,10 @@
       <template slot="item" slot-scope="props">
         <div class="card">
           <div class="card-image">
-            <figure class="image is-5by4">
-              <a @click="info(props.list.id)"
-                ><img :src="getImage(props.list.image)"
-              /></a>
+            <figure class="image is-5by4 listing-container">
+              <a @click="info(props.list.id)">
+                <img :src="getImage(props.list.image)" class="listing-image"/>
+              </a>
             </figure>
             <b-tag type="is-info" rounded style="position: absolute; top: 0;">
               <p class="control" style="margin-left: auto">
@@ -46,7 +46,7 @@ export default {
       values: 0,
     };
   },
-  props:{
+  props: {
     listings: Array,
   },
   methods: {
@@ -66,5 +66,15 @@ export default {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+.listing-image {
+   object-fit: contain;
+   max-width: 100%;
+   max-height: 100%;
+   width: auto;
+   height: auto;
+}
+.listing-container {
+  background-color:  #eee;
 }
 </style>
