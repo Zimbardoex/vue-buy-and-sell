@@ -1,5 +1,6 @@
 <template>
   <div class="listings">
+    <SearchBar />
     <h1 class="title">
       Search results for "{{ this.$route.query.query }}" - ({{
         this.listings.length
@@ -32,13 +33,16 @@
 </template>
 
 <script>
-const API_URL = "http://localhost:5000/api";
 import Listing from "../components/Listing";
+import SearchBar from "../components/SearchBar";
+
+const API_URL = "http://localhost:5000/api";
 
 export default {
   name: "ListingsSearch",
   components: {
     Listing,
+    SearchBar
   },
   data: () => ({
     listings: [],
