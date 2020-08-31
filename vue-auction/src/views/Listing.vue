@@ -1,7 +1,7 @@
 <template>
   <div class="container card">
-    <h1>{{ listing.name }}</h1>
-    <h3>Listing caption will be here</h3>
+    <h1 class="title is-2">{{ listing.name }}</h1>
+    <h3 class="title is-6">Listing caption will be here</h3>
     <div class="image-container">
       <img
         alt="Place holder image"
@@ -9,13 +9,13 @@
         class="image"
       />
     </div>
+    <h1 class="price title is-4">{{ `$${listing.price}` }}</h1>
     <div class="purchasing">
-      <p>{{ `$${listing.price}` }}</p>
-      <button>Buy Now</button>
-      <button>Place Bid</button>
+      <b-button type="is-primary">Buy Now</b-button>
+      <b-button type="is-rounded">Place Bid</b-button>
     </div>
     <div class="description">
-      <h3>Description</h3>
+      <h3 class="title is-5">Description</h3>
       {{ listing.description }}
     </div>
   </div>
@@ -59,6 +59,7 @@ export default {
   align-items: flex-start;
 }
 .description {
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -66,12 +67,24 @@ export default {
 }
 .image-container {
   width: 100%;
+  background-color: #eee;
 }
 .image {
-  width: 80%;
+  max-height: 22rem;
+  max-width: 80%;
   margin:  0 auto;
 }
 .purchasing {
   width: 100%;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+.purchasing  > *{
+  margin: 0 0.5rem
+}
+.price {
+  color: black;
+  margin: 1rem auto;
 }
 </style>
