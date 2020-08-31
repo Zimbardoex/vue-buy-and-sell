@@ -15,6 +15,7 @@
       range-before="3"
       range-after="3"
       :per-page="perPage"
+      order="is-centered"
       aria-next-label="Next page"
       aria-previous-label="Previous page"
       aria-page-label="Page"
