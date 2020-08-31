@@ -1,20 +1,6 @@
 <template>
   <div>
-    <section class="search">
-      <b-field position="is-centered">
-        <b-input
-          placeholder="Search listings..."
-          type="search"
-          icon="magnify"
-          class="search-bar"
-          v-model="query"
-          v-on:keyup.enter.native="search"
-        />
-        <p class="control">
-          <button class="button is-primary" @click="search">Search</button>
-        </p>
-      </b-field>
-    </section>
+    <SearchBar />
     <hr />
     <div class="panel is-primary">
       <p class="panel-heading">
@@ -41,26 +27,23 @@
 </template>
 
 <script>
-import ListingsCarousel from '../components/ListingsCarousel';
 import { mapState } from "vuex";
+
+import ListingsCarousel from '../components/ListingsCarousel';
+import SearchBar from '../components/SearchBar';
+
 
 const API_URL = "http://localhost:5000/api";
 
 export default {
   name: "Home",
-  components:{ListingsCarousel},
+  components:{ListingsCarousel, SearchBar},
   data: () => ({
     categories: [],
-    query:""
   }),
   computed: mapState({
     randomListings: (state) => state.randomListings,
   }),
-  methods: {
-    search: function (){
-      this.$router.push({ path: "listings/search", query:{ query: this.query} });
-    }
-  },
   mounted() {
     if (!this.$store.state.randomListings){
       fetch(`${API_URL}/listings/random/?number=7`)
@@ -101,14 +84,6 @@ export default {
 .category-link {
   color: black;
   text-transform:capitalize;
-}
-.search {
-  margin: 0 auto;
-  margin-top: 1rem;
-  width: 60%;
-}
-.search-bar {
-  width: 100%;
 }
 .carousel-container {
   width: 60vw;
