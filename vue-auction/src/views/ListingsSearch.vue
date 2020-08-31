@@ -6,7 +6,7 @@
       }})
     </h1>
     <Listing
-      v-for="listing in listings"
+      v-for="listing in paginatedListings"
       v-bind:key="listing.id"
       v-bind:id="listing.id"
       v-bind:name="listing.name"
@@ -14,6 +14,20 @@
       v-bind:price="listing.price"
       v-bind:image="listing.image"
     />
+    <b-pagination
+      :total="total"
+      :current.sync="current"
+      range-before="3"
+      range-after="3"
+      :per-page="perPage"
+      order="is-centered"
+      aria-next-label="Next page"
+      aria-previous-label="Previous page"
+      aria-page-label="Page"
+      aria-current-label="Current page"
+      v-if="listings"
+    >
+    </b-pagination>
   </div>
 </template>
 
@@ -28,7 +42,22 @@ export default {
   },
   data: () => ({
     listings: [],
+    perPage: 10,
+    current: 1,
   }),
+  computed: {
+    total() {
+      return this.listings.length;
+    },
+    paginatedListings() {
+      let pageNumber = this.current - 1;
+
+      return this.listings.slice(
+        pageNumber * this.perPage,
+        (pageNumber + 1) * this.perPage
+      );
+    },
+  },
   mounted() {
     document.title = this.$route.query.query
     fetch(`${API_URL}/listings/search?query=${this.$route.query.query}`)
