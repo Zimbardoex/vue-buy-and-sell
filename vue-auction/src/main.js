@@ -9,6 +9,7 @@ import MyListings from "./views/MyListings";
 import Listing from "./views/Listing";
 import Signup from "./views/Signup";
 import Login from "./views/Login";
+import NotFound from "./views/NotFound";
 import CreateListing from "./views/CreateListing";
 import VueRouter from "vue-router";
 import Buefy from "buefy";
@@ -111,6 +112,14 @@ const routes = [
     },
     beforeEnter: loggedInRedirect,
   },
+  {
+    path: "*",
+    component: NotFound,
+    name: "not-found",
+    meta: {
+        title: "Page not found",
+    }
+  }
 ];
 
 const router = new VueRouter({
