@@ -1,5 +1,6 @@
 <template>
   <div class="listings">
+    <SearchBar />
     <Listing
       v-for="listing in paginatedListings"
       v-bind:key="listing.id"
@@ -27,13 +28,16 @@
 </template>
 
 <script>
-const API_URL = "http://localhost:5000/api";
 import Listing from "../components/Listing";
+import SearchBar from "../components/SearchBar";
+
+const API_URL = "http://localhost:5000/api";
 
 export default {
   name: "Listings",
   components: {
     Listing,
+    SearchBar
   },
   data: () => ({
     listings: [],

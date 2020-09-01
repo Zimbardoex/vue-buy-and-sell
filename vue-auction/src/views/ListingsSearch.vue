@@ -1,5 +1,6 @@
 <template>
   <div class="listings">
+    <SearchBar />
     <h1 class="title">
       Search results for "{{ this.$route.query.query }}" - ({{
         this.listings.length
@@ -32,19 +33,27 @@
 </template>
 
 <script>
-const API_URL = "http://localhost:5000/api";
 import Listing from "../components/Listing";
+import SearchBar from "../components/SearchBar";
+
+const API_URL = "http://localhost:5000/api";
 
 export default {
   name: "ListingsSearch",
   components: {
     Listing,
+    SearchBar,
   },
   data: () => ({
     listings: [],
     perPage: 10,
     current: 1,
   }),
+  watch: {
+    $route() {
+      this.search()
+    },
+  },
   computed: {
     total() {
       return this.listings.length;
@@ -59,12 +68,17 @@ export default {
     },
   },
   mounted() {
-    document.title = this.$route.query.query
-    fetch(`${API_URL}/listings/search?query=${this.$route.query.query}`)
-      .then((response) => response.json())
-      .then((result) => {
-        this.listings = result.reverse();
-      });
+    this.search()
+  },
+  methods: {
+    search: function() {
+      document.title = this.$route.query.query;
+      fetch(`${API_URL}/listings/search?query=${this.$route.query.query}`)
+        .then((response) => response.json())
+        .then((result) => {
+          this.listings = result.reverse();
+        });
+    },
   },
 };
 </script>
