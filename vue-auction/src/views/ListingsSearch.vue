@@ -42,13 +42,18 @@ export default {
   name: "ListingsSearch",
   components: {
     Listing,
-    SearchBar
+    SearchBar,
   },
   data: () => ({
     listings: [],
     perPage: 10,
     current: 1,
   }),
+  watch: {
+    $route() {
+      this.search()
+    },
+  },
   computed: {
     total() {
       return this.listings.length;
@@ -63,12 +68,17 @@ export default {
     },
   },
   mounted() {
-    document.title = this.$route.query.query
-    fetch(`${API_URL}/listings/search?query=${this.$route.query.query}`)
-      .then((response) => response.json())
-      .then((result) => {
-        this.listings = result.reverse();
-      });
+    this.search()
+  },
+  methods: {
+    search: function() {
+      document.title = this.$route.query.query;
+      fetch(`${API_URL}/listings/search?query=${this.$route.query.query}`)
+        .then((response) => response.json())
+        .then((result) => {
+          this.listings = result.reverse();
+        });
+    },
   },
 };
 </script>
