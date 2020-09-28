@@ -60,23 +60,25 @@ namespace UsersApi.Controllers
     }
 
     [HttpPost]
-    public ActionResult<User> Create(User user)
+    public ActionResult<User> Create(User newUser)
     {
-      if (_userService.getUserWithEmail(user.Email) == null)
+      User user = _userService.getUserWithEmail(newUser.Email);
+
+      if (user != null)
       {
-        string saltyString = System.Environment.GetEnvironmentVariable("SALTY_STRING");
-        string password = user.Password + saltyString;
-        string salt = BCrypt.Net.BCrypt.GenerateSalt();
-        string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
-
-        user.Password = hashedPassword;
-        _userService.Create(user);
-
-        string token = _userService.generateJwt(user);
-        user.Password = null;
-        return CreatedAtRoute("GetUser", new { id = user.Id }, new { user, token });
+        return StatusCode(409, "A user with this email already exists");
       }
-      return StatusCode(409, "A user with this email already exists");
+
+      string saltyString = System.Environment.GetEnvironmentVariable("SALTY_STRING");
+      string password = newUser.Password + saltyString;
+      string salt = BCrypt.Net.BCrypt.GenerateSalt();
+      string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
+      newUser.Password = hashedPassword;
+      _userService.Create(newUser);
+
+      string token = _userService.generateJwt(newUser);
+      newUser.Password = null;
+      return CreatedAtRoute("GetUser", new { id = newUser.Id }, new { user = newUser, token });
     }
 
     [HttpPut("{id:length(24)}")]
